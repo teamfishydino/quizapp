@@ -27,3 +27,4 @@ _for the current sprint_
 ## Contributors
 
 - .risbydev (discord)
+- acsolle92 (discord)
