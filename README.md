@@ -27,4 +27,4 @@ _for the current sprint_
 ## Contributors
 
 - .risbydev (discord) / risby@fishydino.net
-- acsolle92 (discord)
+- acsolle92 (discord) / csolle@fishydino.net
