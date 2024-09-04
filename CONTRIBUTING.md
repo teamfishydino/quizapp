@@ -4,14 +4,23 @@ To ensure a smooth and efficient workflow, we've put together some key rules and
 Please take a moment to review them before getting started.
 ## Backend
 ### First steps:
-Please ensure you have Python 3.12.5 installed.
+We recommend using `uv` to manage Python versions, project dependencies, and virtual environments for this project. 
+Please follow the [instructions](https://docs.astral.sh/uv/getting-started/installation/) to install it on your system, and refer to the [docs](https://docs.astral.sh/uv/) for more information. 
+If you choose not to use `uv`, please ensure you have Python 3.12.5 installed.
 ```bash
 # Clone the repository to your local system's projects folder
 git clone https://github.com/teamfishydino/quizapp.git
 
 # Change the working directory to quizapp/backend
 cd ./quizapp/backend
-
+```
+Setup with `uv`
+```bash
+# This will create a virtual environment and install required packages
+uv sync
+```
+Setup without `uv`
+```bash
 # Create a virtual environment
 python -m venv .venv
 
@@ -31,6 +40,7 @@ ___
 ### Testing
 We follow the principles of test-driven development. For new features, please consistently write tests using pytest. You can refer to this 
 [FastAPI guide](https://fastapi.tiangolo.com/tutorial/testing/) for more information on how to write tests.
+With an activated virtual environment
 ```bash
 # Run all tests
 pytest
@@ -38,6 +48,15 @@ pytest
 # Run a specific test
 pytest tests/test_something.py
 ```
+Without an activated virtual environment with `uv`
+```bash
+# Run all tests
+uv run pytest
+
+# Run a specific test
+uv run pytest tests/test_something.py
+```
+
 ## Version Control
 - Branching: For every task or feature, create a fresh branch.
   - Use the naming conventions: {category}/{short-branch-name-with-hiphens} for example `feature/setup-frontend`    
