@@ -35,9 +35,11 @@
 
 `tags`
 - optional
-- No duplicate array items (set)
+- max length: 30
+- no duplicate array items (set)
 
 `questions`
 - required
 - no duplicate questions
+- `question` field max length: 140
 
