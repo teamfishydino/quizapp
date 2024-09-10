@@ -1,13 +1,8 @@
 from fastapi import FastAPI
-from .routers import dummies
+
+from .routers import api
+
+app = FastAPI()
 
 
-app = FastAPI(root_path="/api")
-
-
-app.include_router(dummies.router)
-
-
-@app.get("/")
-def dummy_endpoint():
-    return {"message": "Hello World!"}
+app.include_router(api.router, prefix="/api")
