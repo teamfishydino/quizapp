@@ -1,0 +1,66 @@
+
+services:
+  web:
+    build:
+      context: ./frontend
+    ports:
+      - 8001:8001
+    depends_on:
+      - api
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend
+          target: /app/frontend
+          ignore:
+            - node_modules
+        - action: rebuild
+          path: ./frontend/package.json
+
+  # src: https://docs.astral.sh/uv/guides/integration/docker/#developing-in-a-container
+  api:
+    build:
+      context: ./backend
+      target: dev
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    develop:
+      # Create a `watch` configuration to update the appl
+      # https://docs.docker.com/compose/file-watch/#compose-watch-versus-bind-mounts
+      watch:
+        # Sync the working directory with the `/app/backend` directory in the container
+        - action: sync
+          path: ./backend
+          target: /app/backend
+          # Exclude the project virtual environment — it could be for a
+          # different platform in the container
+          ignore:
+            - ./backend/.venv/
+
+        # Rebuild the image on changes to the `pyproject.toml`
+        - action: rebuild
+          path: ./backend/pyproject.toml
+
+  db:
+    image: mongo
+    command: mongod --quiet --logpath /dev/null
+    ports:
+      - "27017:27017"
+    volumes:
+      - quiz-db:/app/data
+
+  db-viewer:
+    image: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://db:27017
+      - ME_CONFIG_BASICAUTH_USERNAME=
+      - ME_CONFIG_BASICAUTH_PASSWORD=
+    depends_on:
+      - db
+    ports:
+      - 8002:8081
+
+volumes:
+  quiz-db:
