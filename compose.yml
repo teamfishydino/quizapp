@@ -6,7 +6,8 @@ services:
     ports:
       - 8001:8001
     depends_on:
-      - api
+      api:
+        condition: service_healthy
     develop:
       watch:
         - action: sync
@@ -24,6 +25,14 @@ services:
       target: dev
     ports:
       - 8000:8000
+    # see: https://medium.com/@ntjegadeesh/implementing-health-checks-and-auto-restarts-for-fastapi-applications-using-docker-and-4245aab27ece
+    healthcheck:
+      test: curl --fail http://localhost:8000/docs || exit 1
+      # test: wget --no-verbose --tries=1 --spider http://localhost:8000 || exit 1
+      interval: 120s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
     depends_on:
       - db
     develop:
@@ -49,7 +58,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - quiz-db:/app/data
+      - "quiz-db:/data/db"
 
   db-viewer:
     image: mongo-express
