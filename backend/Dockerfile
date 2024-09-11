@@ -1,6 +1,7 @@
 # src: https://github.com/astral-sh/uv-docker-example/blob/main/Dockerfile
 # Use a Python image with uv pre-installed
 FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim as base
+RUN apt-get -y update; apt-get -y install curl
 EXPOSE 8000
 # Install the project into `/app`
 WORKDIR /app/backend
