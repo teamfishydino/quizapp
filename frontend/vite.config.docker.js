@@ -9,13 +9,13 @@ export default defineConfig({
 		// hmr: { host: 8001},
 		port: 8001,
 		proxy: {
-			"/api": {
-				target: "http://api:8000",
+			'/api': {
+				target: 'http://api:8000',
 				changeOrigin: true,
 				secure: false
 			}
 		}
 	},
-    // see https://vitejs.dev/config/server-options#server-watch
-    watch: {usePolling: true},
+	// see https://vitejs.dev/config/server-options#server-watch
+	watch: { usePolling: true }
 });

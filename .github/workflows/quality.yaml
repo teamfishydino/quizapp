@@ -1,0 +1,23 @@
+name: Style & Test Checks
+on:
+  pull_request:
+    branches: [main, dev]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  # src: https://akhilaariyachandra.com/blog/prettier-in-github-actions
+  frontend-checks:
+    name: Frontend Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: |
+                cd frontend
+                npm ci
+                npm run lint
+                npm run test

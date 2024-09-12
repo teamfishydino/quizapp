@@ -8,7 +8,8 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"test": "echo \"No tests specified\""
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
