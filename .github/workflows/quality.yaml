@@ -8,7 +8,7 @@ concurrency:
 jobs:
   # src: https://akhilaariyachandra.com/blog/prettier-in-github-actions
   frontend-checks:
-    name: Frontend Checks
+    name: Frontend
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -24,7 +24,7 @@ jobs:
                 npm run lint
                 npm run test
   backend-checks:
-    name: Backend Checks
+    name: Backend
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
