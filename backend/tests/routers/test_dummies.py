@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
-from quizapp.main import app
+# from quizapp.main import app
 
-client = TestClient(app)
+# client = TestClient(app)
 
 
 def test_ping_pong():
