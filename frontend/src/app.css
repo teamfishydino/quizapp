@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-    body {
-        @apply w-screen h-screen overflow-x-hidden
-    }
+	body {
+		@apply w-screen h-screen overflow-x-hidden;
+	}
 }
