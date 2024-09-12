@@ -1,19 +1,34 @@
-from fastapi import APIRouter, status
+from typing import Annotated
+
+import motor.motor_asyncio as motor
+from fastapi import APIRouter, Depends, Request, status
 from fastapi.encoders import jsonable_encoder
-from quizapp.crud import insert_quiz_to_db, retrieve_quizzes
-from quizapp.database import quiz_collection
-from quizapp.schemas.quiz import QuizSchema
+
+from ..crud import insert_quiz_to_db, retrieve_quizzes
+from ..schemas.quiz import QuizSchema
 
 router = APIRouter(tags=["Quizzes"])
 
 
-@router.post("/", status_code=status.HTTP_201_CREATED)
-async def add_quiz(quiz: QuizSchema):
-    quiz = jsonable_encoder(quiz)
+def get_quiz_collection(request: Request):
+    return request.app.database.get_collection("quizzes")
 
+
+@router.post("/", status_code=status.HTTP_201_CREATED)
+async def add_quiz(
+    quiz: QuizSchema,
+    quiz_collection: Annotated[
+        motor.AsyncIOMotorCollection, Depends(get_quiz_collection)
+    ],
+):
+    quiz = jsonable_encoder(quiz)
     return await insert_quiz_to_db(quiz_collection, quiz)
 
 
 @router.get("/", status_code=status.HTTP_200_OK)
-async def get_quizzes():
+async def get_quizzes(
+    quiz_collection: Annotated[
+        motor.AsyncIOMotorCollection, Depends(get_quiz_collection)
+    ],
+):
     return await retrieve_quizzes(quiz_collection)
