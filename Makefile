@@ -14,5 +14,8 @@ dev:
 dev-watch:
 	docker compose up --build --watch
 
+# test:
+# 	docker compose -f ./compose.test.yml run --build --rm api pytest -x
+
 test:
-	docker compose -f ./compose.test.yml up --build
+	docker compose -f ./compose.test.yml up --build --abort-on-container-exit

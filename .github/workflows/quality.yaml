@@ -8,16 +8,26 @@ concurrency:
 jobs:
   # src: https://akhilaariyachandra.com/blog/prettier-in-github-actions
   frontend-checks:
-    name: Frontend Checks
+    name: Frontend
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Set up Node 18
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - run: |
+          node-version: 20
+      - name: Run frontend checks
+        run: |
                 cd frontend
                 npm ci
                 npm run lint
                 npm run test
+  backend-checks:
+    name: Backend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run backend checks
+        run: make test

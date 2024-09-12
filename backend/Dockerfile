@@ -28,12 +28,13 @@ ENV PATH="/app/backend/.venv/bin:$PATH"
 #################################################################################################
 
 FROM base as test
-CMD ["pytest"]
+# Reset the entrypoint, don't invoke `uv`
+ENTRYPOINT []
+# CMD ["pytest"]
 
 #################################################################################################
 
 FROM base as dev
-# Reset the entrypoint, don't invoke `uv`
 ENTRYPOINT []
 
 # Run the FastAPI application by default
