@@ -30,6 +30,7 @@ dnspython==2.6.1
     # via
     #   quiz-app-backend (pyproject.toml)
     #   email-validator
+    #   pymongo
 email-validator==2.2.0
     # via quiz-app-backend (pyproject.toml)
 fastapi==0.112.2
@@ -75,6 +76,8 @@ mdurl==0.1.2
     # via
     #   quiz-app-backend (pyproject.toml)
     #   markdown-it-py
+motor==3.5.1
+    # via quiz-app-backend (pyproject.toml)
 packaging==24.1
     # via
     #   quiz-app-backend (pyproject.toml)
@@ -98,6 +101,8 @@ pygments==2.18.0
     # via
     #   quiz-app-backend (pyproject.toml)
     #   rich
+pymongo==4.8.0
+    # via motor
 pytest==8.3.2
     # via quiz-app-backend (pyproject.toml)
 python-dotenv==1.0.1
