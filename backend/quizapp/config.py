@@ -1,10 +1,7 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from environs import Env
 
+env = Env()
+env.read_env()
 
-class Settings(BaseSettings):
-    mongo_uri: str
-
-    model_config = SettingsConfigDict(env_file=".env")
-
-
-settings = Settings()
+mongo_uri = env.str("MONGO_URI")
+mongo_test_uri = env.str("MONGO_URI")
