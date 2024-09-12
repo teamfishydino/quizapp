@@ -6,7 +6,7 @@
 		if (!data.message) {
 			return 'Error, no pong!';
 		}
-		
+
 		return data.message;
 	}
 </script>
