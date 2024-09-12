@@ -3,7 +3,7 @@
     let date = (new Date(quiz.created_at)).toDateString()
 </script>
 
-<section class="flex flex-col w-11/12 md:w-1/2 m-2 md:m-4 p-4 md:p-6 border-4 border-qdarkblue rounded justify-center items-start bg-qlightblue">
+<section class="flex flex-col w-11/12 lg:w-3/4 xl:w-1/2 m-2 md:m-4 p-4 md:p-6 border-4 border-qdarkblue rounded justify-center items-start bg-qlightblue">
     <h1 class="text-2xl md:text-3xl text-white font-secondary font-[600] border-b-2 mb-2">{quiz.name}</h1>
     <h2 class="text-base md:text-xl text-qdarkblue font-primary font-[500]">By {quiz.creator}</h2>
     <p class="text-sm md:text-lg text-white font-primary font-[300]">{quiz.questions.length} Questions | {date}</p>
