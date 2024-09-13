@@ -1,7 +1,8 @@
 // src: https://stackoverflow.com/a/72839244
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ fetch }) {
-	const res = await fetch('http://api:8000/api/quizzes');
+	// const res = await fetch('http://api:8000/api/quizzes');
+	const res = await fetch('/api/quizzes');
 	const data = await res.json();
 
 	if (data.length == 0) {
