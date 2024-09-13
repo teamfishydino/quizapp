@@ -74,5 +74,7 @@ ENV PATH="/app/.venv/bin:$PATH"
 # CMD ["echo"]
 # ENTRYPOINT ["tail", "-f", "/dev/null"]
 
+EXPOSE 3000
+
 COPY start.sh ./
 CMD ["./start.sh"]
