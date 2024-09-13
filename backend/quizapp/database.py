@@ -1,9 +1,11 @@
+import asyncio
 import motor.motor_asyncio as motor
 from pymongo.server_api import ServerApi
 
 from .config import settings
 
 client = motor.AsyncIOMotorClient(settings.mongo_uri, server_api=ServerApi("1"))
+client.get_io_loop = asyncio.get_event_loop
 
 try:
     client.admin.command("ping")
