@@ -31,3 +31,15 @@ async def test_client(mongodb_client, mongodb_database):
     app.database = mongodb_database
     client = TestClient(app=app)
     yield client
+
+
+@fixture(scope="function")
+def quiz_payload():
+    return {
+        "name": "Quiz",
+        "creator": "Anonymus",
+        "tags": ["test"],
+        "questions": [
+            {"question": "42", "answer": True},
+        ],
+    }
