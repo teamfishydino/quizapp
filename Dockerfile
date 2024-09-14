@@ -77,6 +77,7 @@ ENV PATH="/app/.venv/bin:$PATH"
 EXPOSE 3000
 
 COPY ./start.sh ./
-# ENTRYPOINT ["./start.sh"]
+RUN chmod 755 ./start.sh
+ENTRYPOINT ["./start.sh"]
 # ENTRYPOINT ["echo", "hello world"]
-ENTRYPOINT ["fastapi", "run", "quizapp/main.py"]
+# ENTRYPOINT ["fastapi", "run", "quizapp/main.py"]
