@@ -78,4 +78,5 @@ EXPOSE 3000
 
 COPY ./start.sh ./
 # ENTRYPOINT ["./start.sh"]
-ENTRYPOINT ["echo", "hello world"]
+# ENTRYPOINT ["echo", "hello world"]
+ENTRYPOINT ["fastapi", "run", "quizapp/main.py"]
