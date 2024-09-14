@@ -109,6 +109,10 @@ pygments==2.18.0
 pymongo==4.8.0
     # via motor
 pytest==8.3.2
+    # via
+    #   quiz-app-backend (pyproject.toml)
+    #   pytest-asyncio
+pytest-asyncio==0.24.0
     # via quiz-app-backend (pyproject.toml)
 python-dotenv==1.0.1
     # via
