@@ -34,7 +34,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: MongoDB in GitHub Actions
-        uses: supercharge/mongodb-github-action@1.11.0      
+      #  Not needed since compose.test.yml setups up mongodb
+      # - name: MongoDB in GitHub Actions
+      #   uses: supercharge/mongodb-github-action@1.11.0      
       - name: Run backend checks
         run: make test
