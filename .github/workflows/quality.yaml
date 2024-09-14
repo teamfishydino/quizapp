@@ -39,4 +39,4 @@ jobs:
       # - name: MongoDB in GitHub Actions
       #   uses: supercharge/mongodb-github-action@1.11.0      
       - name: Run backend checks
-        run: make test
+        run: make workflow-test
