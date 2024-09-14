@@ -8,11 +8,11 @@ services:
     ports:
       - 8000:8000
     command: pytest -x
-  #   depends_on:
-  #     - db
+    depends_on:
+      - db
 
-  # db:
-  #   image: mongo
-  #   command: mongod --quiet --logpath /dev/null
-  #   ports:
-  #     - "27017:27017"
+  db:
+    image: mongo
+    command: mongod --quiet --logpath /dev/null
+    ports:
+      - "27017:27017"
