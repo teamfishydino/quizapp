@@ -1,6 +1,7 @@
 from datetime import datetime
 
-
+from bson import ObjectId
+from fastapi import HTTPException, status
 from motor.motor_asyncio import AsyncIOMotorCollection
 
 
@@ -21,6 +22,13 @@ async def retrieve_quizzes(quiz_collection: AsyncIOMotorCollection) -> list[dict
     async for quiz in quiz_collection.find():
         quizzes.append(quiz_helper(quiz))
     return quizzes
+
+
+async def retrieve_quiz(quiz_collection: AsyncIOMotorCollection, quiz_id: str) -> dict:
+    quiz = await quiz_collection.find_one({"_id": ObjectId(quiz_id)})
+    if not quiz:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+    return quiz_helper(quiz)
 
 
 async def insert_quiz_to_db(
