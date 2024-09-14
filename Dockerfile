@@ -8,7 +8,7 @@ WORKDIR /app
 COPY ./frontend/package*.json ./
 RUN npm install
 
-COPY ./frontend .
+COPY ./frontend ./
 
 RUN npm run build
 
@@ -27,7 +27,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=./backend/pyproject.toml,target=pyproject.toml \
     uv sync --frozen --no-install-project --no-dev
 
-ADD ./backend .
+ADD ./backend ./
 
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-dev
@@ -58,7 +58,7 @@ COPY --from=build-svelte /app/package-lock.json ./client
 
 RUN cd ./client && npm ci --omit dev && cd ..
 
-COPY --from=build-fastapi --chown=app:app /app .
+COPY --from=build-fastapi --chown=app:app ./app ./
 ENV PATH="/app/.venv/bin:$PATH"
 
 # RUN apk update
@@ -76,5 +76,5 @@ ENV PATH="/app/.venv/bin:$PATH"
 
 EXPOSE 3000
 
-COPY start.sh ./
+COPY ./start.sh ./
 ENTRYPOINT ["./start.sh"]
