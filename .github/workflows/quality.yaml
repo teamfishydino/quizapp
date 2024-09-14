@@ -8,6 +8,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
+  MONGO_URI: "mongodb://localhost:27017/"
   MONGO_TEST_URI: "mongodb://localhost:27017/"
 
 jobs:
