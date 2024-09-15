@@ -22,5 +22,5 @@ test:
 	docker compose down
 
 workflow-test:
-	docker compose -f ./compose.test.yml run --build --service-ports -e MONGO_URI=$MONGO_URI -e MONGO_TEST_URI=$MONGO_TEST_URI api
+	docker compose -f ./compose.test.yml run --build --service-ports -e MONGO_URI -e MONGO_TEST_URI api
 	docker compose down

@@ -7,6 +7,9 @@ services:
       target: test
     ports:
       - 8000:8000
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - MONGO_TEST_URI=${MONGO_TEST_URI}
     command: pytest -x
     depends_on:
       - db
