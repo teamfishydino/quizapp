@@ -8,8 +8,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  MONGO_URI: "mongodb://localhost:27017/"
-  MONGO_TEST_URI: "mongodb://localhost:27017/"
+  MONGO_URI: "mongodb://db:27017/"
+  MONGO_TEST_URI: "mongodb://db:27017/"
 
 jobs:
   # src: https://akhilaariyachandra.com/blog/prettier-in-github-actions
