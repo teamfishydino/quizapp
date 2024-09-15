@@ -18,4 +18,9 @@ dev-watch:
 # 	docker compose -f ./compose.test.yml run --build --rm api pytest -x
 
 test:
-	docker compose -f ./compose.test.yml up --build --abort-on-container-exit
+	docker compose -f ./compose.test.yml run --build --service-ports --rm api
+	docker compose down
+
+workflow-test:
+	docker compose -f ./compose.test.yml run --build --service-ports -e MONGO_URI -e MONGO_TEST_URI api
+	docker compose down

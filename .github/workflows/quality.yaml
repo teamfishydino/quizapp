@@ -2,9 +2,15 @@ name: Style & Test Checks
 on:
   pull_request:
     branches: [main, dev]
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+
+env:
+  MONGO_URI: "mongodb://db:27017/"
+  MONGO_TEST_URI: "mongodb://db:27017/"
+
 jobs:
   # src: https://akhilaariyachandra.com/blog/prettier-in-github-actions
   frontend-checks:
@@ -29,5 +35,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      #  Not needed since compose.test.yml setups up mongodb
+      # - name: MongoDB in GitHub Actions
+      #   uses: supercharge/mongodb-github-action@1.11.0      
       - name: Run backend checks
-        run: make test
+        run: make workflow-test
