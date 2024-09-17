@@ -40,12 +40,18 @@ class QuizSchema(BaseModel):
     class Config:
         json_schema_extra = {
             "example": {
-                "name": "The BIG astro queez",
-                "creator": "Anonymus",
-                "tags": ["moon", "space"],
+                "name": "The Ultimate Life Quiz",
+                "creator": "Anonymous",
+                "tags": ["life", "philosophy", "science"],
                 "questions": [
-                    {"question": "Is the moon made of chesse?", "answer": False},
-                    {"question": "Planet mars is red?", "answer": True},
+                    {
+                        "question": "Is the meaning of life, the universe, and everything equal to 42?",
+                        "answer": True,
+                    },
+                    {
+                        "question": "Is the speed of light in a vacuum 300,000 km/h?",
+                        "answer": False,
+                    },
                 ],
             }
         }
