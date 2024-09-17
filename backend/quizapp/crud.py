@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from uu import Error
 
 from bson import ObjectId
@@ -45,7 +45,7 @@ async def retrieve_quiz(quiz_collection: AsyncIOMotorCollection, quiz_id: str) -
 async def insert_quiz_to_db(
     quiz_collection: AsyncIOMotorCollection, quiz_data: dict
 ) -> dict:
-    quiz_data.update({"created_at": datetime.now()})
+    quiz_data.update({"created_at": datetime.now(timezone.utc)})
 
     quiz = await quiz_collection.insert_one(quiz_data)
 
