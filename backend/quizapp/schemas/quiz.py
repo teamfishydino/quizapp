@@ -9,10 +9,12 @@ class QuestionSchema(BaseModel):
         return hash(self.question)
 
     def __eq__(self, other) -> bool:
-        return self.__hash__() == other.__hash__()
+        if isinstance(other, QuestionSchema):
+            return self.__hash__() == other.__hash__()
+        return False
 
     def __ne__(self, other) -> bool:
-        return self.__eq__(other)
+        return not self.__eq__(other)
 
 
 class QuizSchema(BaseModel):
