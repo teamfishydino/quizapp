@@ -43,3 +43,49 @@ def quiz_payload():
             {"question": "42", "answer": True},
         ],
     }
+
+
+@fixture(scope="function")
+def quiz_payload_for_list_order_and_uniqueness_test():
+    return {
+        "name": "The Ultimate Life Quiz",
+        "creator": "Anonymous",
+        "tags": ["life", "philosophy", "life", "science", "philosophy", "science"],
+        "questions": [
+            {
+                "question": "Is the meaning of life, the universe, and everything equal to 42?",
+                "answer": True,
+            },
+            {
+                "question": "Is the meaning of life, the universe, and everything equal to 42?",
+                "answer": True,
+            },
+            {
+                "question": "Is the speed of light in a vacuum 300,000 km/h?",
+                "answer": False,
+            },
+            {
+                "question": "Is the meaning of life, the universe, and everything equal to 42?",
+                "answer": True,
+            },
+            {
+                "question": "Is the speed of light in a vacuum 300,000 km/h?",
+                "answer": False,
+            },
+        ],
+    }
+
+
+@fixture(scope="function")
+def correct_answers_for_list_order_and_uniqueness_test():
+    question_one = {
+        "question": "Is the meaning of life, the universe, and everything equal to 42?",
+        "answer": True,
+    }
+
+    question_two = {
+        "question": "Is the speed of light in a vacuum 300,000 km/h?",
+        "answer": False,
+    }
+
+    return [question_one, question_two], ["life", "philosophy", "science"]

@@ -20,8 +20,19 @@ class QuestionSchema(BaseModel):
 class QuizSchema(BaseModel):
     name: str = Field(..., max_length=30)
     creator: str = Field(..., max_length=30)
-    tags: set[str] = Field(set())
-    questions: set[QuestionSchema] = Field(...)
+    tags: list[str] = Field([])
+    questions: list[QuestionSchema] = Field(...)
+
+    @field_validator("questions", "tags")
+    @classmethod
+    def make_unique(cls, list_field):
+        unique_list = []
+        for item in list_field:
+            if item in unique_list:
+                continue
+            else:
+                unique_list.append(item)
+        return unique_list
 
     @field_validator("tags")
     @classmethod
