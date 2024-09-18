@@ -4,7 +4,7 @@ import motor.motor_asyncio as motor
 from fastapi import APIRouter, Depends, Request, status
 from fastapi.encoders import jsonable_encoder
 
-from ..crud import insert_quiz_to_db, retrieve_quizzes
+from ..crud import insert_quiz_to_db, retrieve_quiz, retrieve_quizzes
 from ..schemas.quiz import QuizSchema
 
 router = APIRouter(tags=["Quizzes"])
@@ -32,3 +32,13 @@ async def get_quizzes(
     ],
 ):
     return await retrieve_quizzes(quiz_collection)
+
+
+@router.get("/{quiz_id}")
+async def get_quiz(
+    quiz_id: str,
+    quiz_collection: Annotated[
+        motor.AsyncIOMotorCollection, Depends(get_quiz_collection)
+    ],
+):
+    return await retrieve_quiz(quiz_collection, quiz_id)

@@ -1,6 +1,9 @@
 from datetime import datetime
+from uu import Error
 
-
+from bson import ObjectId
+from bson.errors import InvalidId
+from fastapi import HTTPException, status
 from motor.motor_asyncio import AsyncIOMotorCollection
 
 
@@ -21,6 +24,22 @@ async def retrieve_quizzes(quiz_collection: AsyncIOMotorCollection) -> list[dict
     async for quiz in quiz_collection.find():
         quizzes.append(quiz_helper(quiz))
     return quizzes
+
+
+async def retrieve_quiz(quiz_collection: AsyncIOMotorCollection, quiz_id: str) -> dict:
+    try:
+        _id = ObjectId(quiz_id)
+        quiz = await quiz_collection.find_one({"_id": _id})
+        if not quiz:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"No quizzes exist with the ID {_id}",
+            )
+        return quiz_helper(quiz)
+    except InvalidId:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid MongoDB ID"
+        )
 
 
 async def insert_quiz_to_db(
